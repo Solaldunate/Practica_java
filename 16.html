@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego de Memoria</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #ffd700;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .card {
+        cursor: pointer;
+    }
+    .card img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Juego de Memoria</h1>
+    <div class="row">
+      <div class="col-md-2 mb-3">
+        <div class="card" id="carta1" onclick="seleccionarCarta('carta1')">
+          <img src="IMAGENES/Luffy.jpeg" class="card-img-top" alt="Imagen 1">
+        </div>
+      </div>
+      <div class="col-md-2 mb-3">
+        <div class="card" id="carta2" onclick="seleccionarCarta('carta2')">
+          <img src="IMAGENES/Todos1.jpeg" class="card-img-top" alt="Imagen 2">
+        </div>
+      </div>
+      <div class="col-md-2 mb-3">
+        <div class="card" id="carta3" onclick="seleccionarCarta('carta3')">
+          <img src="IMAGENES/Zorro.jpeg" class="card-img-top" alt="Imagen 3">
+        </div>
+      </div>
+      <div class="col-md-2 mb-3">
+        <div class="card" id="carta4" onclick="seleccionarCarta('carta4')">
+          <img src="IMAGENES/Luffy.jpeg" class="card-img-top" alt="Imagen 1">
+        </div>
+      </div>
+      <div class="col-md-2 mb-3">
+        <div class="card" id="carta5" onclick="seleccionarCarta('carta5')">
+          <img src="IMAGENES/Todos1.jpeg" class="card-img-top" alt="Imagen 2">
+        </div>
+      </div>
+      <div class="col-md-2 mb-3">
+        <div class="card" id="carta6" onclick="seleccionarCarta('carta6')">
+          <img src="IMAGENES/Zorro.jpeg" class="card-img-top" alt="Imagen 3">
+        </div>
+      </div>
+    </div>
+    <div id="mensaje" class="mt-3 text-center" style="display: none;"></div>
+  </div>
+
+  <script>
+    var primeraCarta = null;
+    var segundaCarta = null;
+    var parejasEncontradas = 0;
+    var cartasEncontradas = [];
+
+    function iniciarJuego() {
+        var cartas = document.querySelectorAll('.card img');
+        cartas.forEach(function(imagen) {
+            imagen.style.visibility = 'hidden';
+        });
+
+        // Reiniciar variables
+        primeraCarta = null;
+        segundaCarta = null;
+        parejasEncontradas = 0;
+        cartasEncontradas = [];
+        document.getElementById('mensaje').style.display = 'none';
+    }
+    window.onload = iniciarJuego;
+
+    function seleccionarCarta(idCarta) {
+        if (cartasEncontradas.includes(idCarta)) {
+            return;
+        }
+
+        var carta = document.getElementById(idCarta);
+        var imagen = carta.querySelector("img");
+        imagen.style.visibility = "visible";
+        if (primeraCarta === null) {
+            primeraCarta = carta;
+        } else {
+            segundaCarta = carta;
+            if (primeraCarta.querySelector("img").src === segundaCarta.querySelector("img").src) {
+                // Marcar como encontradas
+                parejasEncontradas++;
+                cartasEncontradas.push(idCarta);
+                if (parejasEncontradas === 3) {
+                    mostrarMensaje("¡Felicidades! ¡Has encontrado todas las parejas!");
+                }
+            } else {
+                setTimeout(function() {
+                    primeraCarta.querySelector("img").style.visibility = "hidden";
+                    segundaCarta.querySelector("img").style.visibility = "hidden";
+                    primeraCarta = null;
+                    segundaCarta = null;
+                }, 1000);
+            }
+        }
+    }
+
+    function mostrarMensaje(mensaje) {
+        var mensajeElemento = document.getElementById("mensaje");
+        mensajeElemento.innerText = mensaje;
+        mensajeElemento.style.display = "block";
+    }
+  </script>
+</body>
+</html>

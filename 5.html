@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maximo Común Divisor (MCD)</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #ffd700;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .btn-primary {
+        background-color: #fd7e14;
+        border-color: #fd7e14;
+    }
+    .btn-primary:hover {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+    h1 {
+        color: #ff1493;
+    }
+    #resultado {
+        margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Máximo Común Divisor (MCD)</h1>
+    <div class="form-group">
+      <label for="numero1">Primer número:</label>
+      <input type="number" class="form-control" id="numero1" placeholder="Número 1">
+    </div>
+    <div class="form-group">
+      <label for="numero2">Segundo número:</label>
+      <input type="number" class="form-control" id="numero2" placeholder="Número 2">
+    </div>
+    <button type="button" class="btn btn-primary" onclick="calcularMCD()">Calcular MCD</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularMCD() {
+        var num1 = parseInt(document.getElementById("numero1").value);
+        var num2 = parseInt(document.getElementById("numero2").value);
+        var resultado = document.getElementById("resultado");
+        
+        if (!isNaN(num1) && !isNaN(num2)) {
+            var mcd = calcularMCDHelper(Math.abs(num1), Math.abs(num2));
+            resultado.innerHTML = "<p>El MCD de " + num1 + " y " + num2 + " es: <strong>" + mcd + "</strong></p>";
+        } else {
+            resultado.innerHTML = "<p>Por favor, ingresa dos números válidos.</p>";
+        }
+    }
+
+    function calcularMCDHelper(a, b) {
+        if (b === 0) {
+            return a;
+        } else {
+            return calcularMCDHelper(b, a % b);
+        }
+    }
+  </script>
+</body>
+</html>

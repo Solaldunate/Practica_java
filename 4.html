@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor de Celsius a Fahrenheit</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #ffd700;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .btn-primary {
+        background-color: #fd7e14;
+        border-color: #fd7e14;
+    }
+    .btn-primary:hover {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+    h1 {
+        color: #ff1493;
+    }
+    #resultado {
+        margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Conversor de Celsius a Fahrenheit</h1>
+    <div class="form-group">
+      <label for="celsius">Grados Celsius:</label>
+      <input type="number" class="form-control" id="celsius" placeholder="Celsius">
+    </div>
+    <button type="button" class="btn btn-primary" onclick="convertir()">Convertir a Fahrenheit</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function convertir() {
+        var celsius = parseFloat(document.getElementById("celsius").value);
+        var resultado = document.getElementById("resultado");
+        if (!isNaN(celsius)) {
+            var fahrenheit = (celsius * 9/5) + 32;
+            resultado.innerHTML = "<p>" + celsius + " grados Celsius equivalen a <strong>" + fahrenheit + "</strong> grados Fahrenheit.</p>";
+        } else {
+            resultado.innerHTML = "<p>Por favor, ingresa una temperatura válida en grados Celsius.</p>";
+        }
+    }
+  </script>
+</body>
+</html>

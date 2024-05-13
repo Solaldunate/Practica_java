@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificador de Números Primos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #ffd700;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .btn-primary {
+        background-color: #fd7e14;
+        border-color: #fd7e14;
+    }
+    .btn-primary:hover {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+    h1 {
+        color: #ff1493;
+    }
+    #resultado {
+        margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Verificador de Números Primos</h1>
+    <div class="form-group">
+      <label for="numero">Ingresa un número:</label>
+      <input type="number" class="form-control" id="numero" placeholder="Número">
+    </div>
+    <button type="button" class="btn btn-primary" onclick="verificarPrimo()">Verificar Primalidad</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function esPrimo(numero) {
+        if (numero <= 1) return false;
+        if (numero <= 3) return true;
+      
+        if (numero % 2 === 0 || numero % 3 === 0) return false;
+      
+        for (var i = 5; i * i <= numero; i += 6) {
+            if (numero % i === 0 || numero % (i + 2) === 0) return false;
+        }
+      
+        return true;
+    }
+
+    function verificarPrimo() {
+        var numero = parseInt(document.getElementById("numero").value);
+        var resultado = document.getElementById("resultado");
+        if (!isNaN(numero)) {
+            if (esPrimo(numero)) {
+                resultado.innerHTML = "<p>" + numero + " es un número primo.</p>";
+            } else {
+                resultado.innerHTML = "<p>" + numero + " no es un número primo.</p>";
+            }
+        } else {
+            resultado.innerHTML = "<p>Por favor, ingresa un número válido.</p>";
+        }
+    }
+  </script>
+</body>
+</html>

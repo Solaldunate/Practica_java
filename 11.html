@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desplazamiento de Elemento</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #ff69b4; /* rosa */
+    }
+    .container {
+        margin-top: 50px;
+        position: relative;
+    }
+    #elemento {
+        width: 50px;
+        height: 50px;
+        background-color: #e6e6fa; /* lila */
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: left 0.2s ease-in-out, top 0.2s ease-in-out; /* Transición suave */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Desplazamiento de Elemento</h1>
+    <div id="elemento"></div>
+  </div>
+
+  <script>
+    var currentPosition = { x: 0, y: 0 };
+
+    function moverElemento(event) {
+        var elemento = document.getElementById("elemento");
+        var paso = 10; 
+        switch (event.key) {
+            case "ArrowLeft":
+                currentPosition.x -= paso;
+                break;
+            case "ArrowRight":
+                currentPosition.x += paso;
+                break;
+            case "ArrowUp":
+                currentPosition.y -= paso;
+                break;
+            case "ArrowDown":
+                currentPosition.y += paso;
+                break;
+        }
+
+        elemento.style.left = currentPosition.x + "px";
+        elemento.style.top = currentPosition.y + "px";
+    }
+
+    document.addEventListener("keydown", moverElemento);
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reloj Digital</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #3700ff;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .reloj {
+        font-size: 3rem;
+        color: #14e4ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Reloj Digital</h1>
+    <div class="reloj text-center" id="reloj"></div>
+  </div>
+
+  <script>
+    function actualizarReloj() {
+        var ahora = new Date();
+        var horas = ahora.getHours().toString().padStart(2, '0');
+        var minutos = ahora.getMinutes().toString().padStart(2, '0');
+        var segundos = ahora.getSeconds().toString().padStart(2, '0');
+        var horaActual = horas + ":" + minutos + ":" + segundos;
+        document.getElementById("reloj").innerText = horaActual;
+    }
+
+    actualizarReloj(); 
+    setInterval(actualizarReloj, 1000);
+  </script>
+</body>
+</html>

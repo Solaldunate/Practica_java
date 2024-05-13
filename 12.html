@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cronómetro</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #00f7ff;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .cronometro {
+        font-size: 3rem;
+        color: #ff00ea;
+    }
+    .btn {
+        margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Cronómetro</h1>
+    <div id="cronometro" class="cronometro text-center">00:00:00</div>
+    <div class="text-center">
+        <button id="btnIniciar" class="btn btn-primary">Iniciar</button>
+        <button id="btnPausar" class="btn btn-secondary" style="display: none;">Pausar</button>
+        <button id="btnDetener" class="btn btn-danger" style="display: none;">Detener</button>
+    </div>
+  </div>
+
+  <script>
+    var tiempoInicio;
+    var intervalo;
+
+    function iniciarCronometro() {
+        tiempoInicio = Date.now();
+        intervalo = setInterval(actualizarCronometro, 1000);
+        document.getElementById("btnIniciar").style.display = "none";
+        document.getElementById("btnPausar").style.display = "inline-block";
+        document.getElementById("btnDetener").style.display = "inline-block";
+    }
+
+    function pausarCronometro() {
+        clearInterval(intervalo);
+        document.getElementById("btnIniciar").style.display = "inline-block";
+        document.getElementById("btnPausar").style.display = "none";
+    }
+
+    function detenerCronometro() {
+        clearInterval(intervalo);
+        document.getElementById("cronometro").innerText = "00:00:00";
+        document.getElementById("btnIniciar").style.display = "inline-block";
+        document.getElementById("btnPausar").style.display = "none";
+        document.getElementById("btnDetener").style.display = "none";
+    }
+
+    function actualizarCronometro() {
+        var tiempoTranscurrido = Date.now() - tiempoInicio;
+        var horas = Math.floor(tiempoTranscurrido / 3600000);
+        var minutos = Math.floor((tiempoTranscurrido % 3600000) / 60000);
+        var segundos = Math.floor((tiempoTranscurrido % 60000) / 1000);
+        document.getElementById("cronometro").innerText = 
+            horas.toString().padStart(2, '0') + ":" +
+            minutos.toString().padStart(2, '0') + ":" +
+            segundos.toString().padStart(2, '0');
+    }
+
+    document.getElementById("btnIniciar").addEventListener("click", iniciarCronometro);
+    document.getElementById("btnPausar").addEventListener("click", pausarCronometro);
+    document.getElementById("btnDetener").addEventListener("click", detenerCronometro);
+  </script>
+</body>
+</html>

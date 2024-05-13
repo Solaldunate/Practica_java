@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Contacto</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #ffd700;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .btn-primary {
+        background-color: #fd7e14;
+        border-color: #fd7e14;
+    }
+    .btn-primary:hover {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+    h1 {
+        color: #ff1493;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .error-message {
+        color: #dc3545;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Formulario de Contacto</h1>
+    <form id="contactForm" onsubmit="return validarFormulario()">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+        <div id="nombreError" class="error-message"></div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="Email">
+        <div id="emailError" class="error-message"></div>
+      </div>
+      <div class="form-group">
+        <label for="telefono">Teléfono:</label>
+        <input type="text" class="form-control" id="telefono" placeholder="Teléfono">
+        <div id="telefonoError" class="error-message"></div>
+      </div>
+      <div class="form-group">
+        <label for="mensaje">Mensaje:</label>
+        <textarea class="form-control" id="mensaje" rows="3" placeholder="Mensaje"></textarea>
+        <div id="mensajeError" class="error-message"></div>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+
+  <script>
+    function validarFormulario() {
+        var nombre = document.getElementById("nombre").value.trim();
+        var email = document.getElementById("email").value.trim();
+        var telefono = document.getElementById("telefono").value.trim();
+        var mensaje = document.getElementById("mensaje").value.trim();
+
+        var nombreError = document.getElementById("nombreError");
+        var emailError = document.getElementById("emailError");
+        var telefonoError = document.getElementById("telefonoError");
+        var mensajeError = document.getElementById("mensajeError");
+
+        nombreError.innerHTML = "";
+        emailError.innerHTML = "";
+        telefonoError.innerHTML = "";
+        mensajeError.innerHTML = "";
+
+        var valido = true;
+
+        if (nombre === "") {
+            nombreError.innerHTML = "Por favor, ingresa tu nombre.";
+            valido = false;
+        }
+
+        if (email === "") {
+            emailError.innerHTML = "Por favor, ingresa tu correo electrónico.";
+            valido = false;
+        } else if (!validarEmail(email)) {
+            emailError.innerHTML = "Por favor, ingresa un correo electrónico válido.";
+            valido = false;
+        }
+
+        if (telefono === "") {
+            telefonoError.innerHTML = "Por favor, ingresa tu teléfono.";
+            valido = false;
+        } else if (!validarTelefono(telefono)) {
+            telefonoError.innerHTML = "Por favor, ingresa un número de teléfono válido.";
+            valido = false;
+        }
+
+        if (mensaje === "") {
+            mensajeError.innerHTML = "Por favor, ingresa tu mensaje.";
+            valido = false;
+        }
+        return valido;
+    }
+
+    function validarEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+    function validarTelefono(telefono) {
+        var re = /^\d{7,8}$/;
+        return re.test(telefono);
+    }
+  </script>
+</body>
+</html>

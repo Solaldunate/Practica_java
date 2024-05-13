@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambiar Color de Fondo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #ffd700;
+    }
+
+    .container {
+        margin-top: 50px;
+    }
+
+    .btn-primary {
+        background-color: #fd7e14;
+        border-color: #fd7e14;
+    }
+
+    .btn-primary:hover {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+
+    h1 {
+        color: #ff1493;
+    }
+
+    #elemento {
+        margin-top: 20px;
+        width: 200px;
+        height: 200px;
+        border: 2px solid #ff1493;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cambiar Color de Fondo</h1>
+    <div class="form-group">
+      <label for="colorSelect">Selecciona un color:</label>
+      <select class="form-control" id="colorSelect">
+        <option value="#ff6347">Rojo</option>
+        <option value="#1e90ff">Azul</option>
+        <option value="#ff69b4">Rosa</option>
+        <option value="#32cd32">Verde</option>
+      </select>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="cambiarColor()">Cambiar Color</button>
+    <div id="elemento"></div>
+  </div>
+
+  <script>
+    function cambiarColor() {
+        var colorSeleccionado = document.getElementById("colorSelect").value;
+        document.getElementById("elemento").style.backgroundColor = colorSeleccionado;
+    }
+  </script>
+</body>
+</html>

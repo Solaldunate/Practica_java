@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Factorial</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .btn-primary {
+        background-color: #fd7e14;
+        border-color: #fd7e14;
+    }
+    .btn-primary:hover {
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+    h1 {
+        color: #17a2b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Factorial</h1>
+    <div class="form-group">
+      <label for="numero">Ingresa un número:</label>
+      <input type="number" class="form-control" id="numero" placeholder="Número">
+    </div>
+    <button type="button" class="btn btn-primary" onclick="calcular()">Calcular Factorial</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularFactorial(numero) {
+        if (numero === 0 || numero === 1)
+            return 1;
+        for (var i = numero - 1; i >= 1; i--) {
+            numero *= i;
+        }
+        return numero;
+    }
+
+    function calcular() {
+        var numero = parseInt(document.getElementById("numero").value);
+        var resultado = document.getElementById("resultado");
+        if (!isNaN(numero)) {
+            var factorial = calcularFactorial(numero);
+            resultado.innerHTML = "<p>El factorial de " + numero + " es: <strong>" + factorial + "</strong></p>";
+        } else {
+            resultado.innerHTML = "<p>Por favor, ingresa un número válido.</p>";
+        }
+    }
+  </script>
+</body>
+</html>

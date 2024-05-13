@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encontrar el Número Mayor en un Array</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #ffd700;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .btn-primary {
+        background-color: #fd7e14;
+        border-color: #fd7e14;
+    }
+    .btn-primary:hover {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+    h1 {
+        color: #ff1493;
+    }
+    #resultado {
+        margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Encontrar el Número Mayor en un Array</h1>
+    <div class="form-group">
+      <label for="arrayInput">Ingresa los números separados por comas:</label>
+      <input type="text" class="form-control" id="arrayInput" placeholder="Ejemplo: 3, 7, 1, 10">
+    </div>
+    <button type="button" class="btn btn-primary" onclick="encontrarMayor()">Encontrar Mayor</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function encontrarMayor() {
+        var numerosString = document.getElementById("arrayInput").value.trim();
+        var numerosArray = numerosString.split(",").map(Number);
+
+        if (numerosArray.some(isNaN)) {
+            document.getElementById("resultado").innerHTML = "<p>Por favor, ingresa solo números separados por comas.</p>";
+            return;
+        }
+
+        if (numerosArray.length === 0) {
+            document.getElementById("resultado").innerHTML = "<p>Por favor, ingresa al menos un número.</p>";
+            return;
+        }
+
+        var maximo = Math.max.apply(null, numerosArray);
+        document.getElementById("resultado").innerHTML = "<p>El número mayor es: <strong>" + maximo + "</strong></p>";
+    }
+  </script>
+</body>
+</html>

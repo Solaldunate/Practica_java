@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Elementos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #b74cdb;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .btn-primary {
+        background-color: #fd7e14;
+        border-color: #fd7e14;
+    }
+    .btn-primary:hover {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+    h1 {
+        color: #ff1493;
+    }
+    #lista {
+        margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Lista de Elementos</h1>
+    <div class="form-group">
+      <label for="nuevoElemento">Nuevo Elemento:</label>
+      <input type="text" class="form-control" id="nuevoElemento" placeholder="Escribir elemento">
+    </div>
+    <button type="button" class="btn btn-primary" onclick="agregarElemento()">Agregar</button>
+    <button type="button" class="btn btn-danger" onclick="borrarElemento()">Borrar último</button>
+    <ul id="lista" class="list-group"></ul>
+  </div>
+
+  <script>
+    function agregarElemento() {
+        var nuevoElemento = document.getElementById("nuevoElemento").value.trim();
+        if (nuevoElemento !== "") {
+            var lista = document.getElementById("lista");
+            var li = document.createElement("li");
+            li.className = "list-group-item";
+            li.appendChild(document.createTextNode(nuevoElemento));
+            lista.appendChild(li);
+            document.getElementById("nuevoElemento").value = "";
+        }
+    }
+
+    function borrarElemento() {
+        var lista = document.getElementById("lista");
+        if (lista.lastChild) {
+            lista.removeChild(lista.lastChild);
+        }
+    }
+  </script>
+</body>
+</html>

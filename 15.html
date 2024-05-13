@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostrar u ocultar elemento</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+        background-color: #519094;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    #elemento {
+        padding: 20px;
+        background-color: #d1e731;
+        color: white;
+        text-align: center;
+        display: none; 
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Mostrar u ocultar elemento</h1>
+    <button id="btnMostrar" class="btn btn-primary">Mostrar Elemento</button>
+    <button id="btnOcultar" class="btn btn-danger" style="display: none;">Ocultar Elemento</button>
+    <div id="elemento" class="mt-3">
+      Este es un elemento que puede ser mostrado u ocultado.
+    </div>
+  </div>
+
+  <script>
+    var elemento = document.getElementById("elemento");
+    var btnMostrar = document.getElementById("btnMostrar");
+    var btnOcultar = document.getElementById("btnOcultar");
+
+    btnMostrar.addEventListener("click", function() {
+        elemento.style.display = "block";
+        btnMostrar.style.display = "none";
+        btnOcultar.style.display = "inline-block";
+    });
+    btnOcultar.addEventListener("click", function() {
+        elemento.style.display = "none";
+        btnMostrar.style.display = "inline-block";
+        btnOcultar.style.display = "none";
+    });
+  </script>
+</body>
+</html>
